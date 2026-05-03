@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL-CREDO — Bespoke Furniture, Kigali</title>
+<meta name="description" content="Premium bespoke furniture and interior installations in Kigali, Rwanda. Order online, pay via MTN MoMo or Airtel Money, delivered to your door.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════
+   DESIGN TOKENS
+════════════════════════════════════════ */
+:root {
+  --cream:       #FAF8F5;
+  --stone-50:    #F5F0EB;
+  --stone-100:   #EAE4DC;
+  --stone-200:   #D8D0C4;
+  --stone-400:   #A09080;
+  --stone-600:   #6A5E52;
+  --stone-800:   #3A3028;
+  --dark:        #1A1713;
+  --gold:        #C4974A;
+  --gold-light:  #E8C17A;
+  --gold-pale:   #FDF6EC;
+  --white:       #FFFFFF;
+  --green:       #25D366;
+  --success:     #2D7A4F;
+  --success-bg:  #D1FAE5;
+  --danger:      #9B2335;
+  --danger-bg:   #FEE2E2;
+  --info-bg:     #DBEAFE;
+  --info:        #1E40AF;
+  --warn-bg:     #FEF3C7;
+  --warn:        #92400E;
+  --purple-bg:   #EDE9FE;
+  --purple:      #5B21B6;
+  --mtn:         #FFCC00;
+  --airtel:      #E40000;
+
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 6px rgba(26,23,19,.07);
+  --shadow:    0 2px 18px rgba(26,23,19,.09);
+  --shadow-lg: 0 8px 40px rgba(26,23,19,.15);
+}
+
+/* ════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--cream);color:var(--dark);min-height:100vh;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+button,input,select,textarea{font-family:var(--sans);}
+a{text-decoration:none;color:inherit;}
+.hide{display:none!important;}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+#main-nav {
+  background: var(--dark);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 12px rgba(0,0,0,.3);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: .15em;
+  cursor: pointer;
+  user-select: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-center { display: flex; gap: 4px; }
+.nav-tab {
+  background: none;
+  border: none;
+  color: var(--stone-400);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: .2s;
+}
+.nav-tab:hover, .nav-tab.active { color: var(--white); background: rgba(255,255,255,.1); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.cart-pill {
+  background: var(--gold);
+  border: none;
+  color: var(--dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: .2s;
+  white-space: nowrap;
+}
+.cart-pill:hover { background: var(--gold-light); }
+.cart-badge {
+  background: var(--dark);
+  color: var(--white);
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
+.owner-btn {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  color: var(--stone-400);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: .2s;
+}
+.owner-btn:hover { color: var(--white); background: rgba(255,255,255,.15); }
+
+/* Mobile nav toggle */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Mobile slide menu */
+#mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 300;
+  flex-direction: column;
+  padding: 24px;
+}
+#mobile-menu.open { display: flex; }
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.mobile-menu-close {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 22px;
+  cursor: pointer;
+}
+.mobile-nav-links { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.mobile-nav-link {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--stone-400);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  cursor: pointer;
+  transition: .2s;
+}
+.mobile-nav-link:hover { color: var(--white); }
+.mobile-cta {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  border-radius: var(--radius);
+  margin-top: 32px;
+}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #2D2420 60%, #1A1410 100%);
+  padding: 72px 28px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(196,151,74,.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(196,151,74,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 62px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.hero h1 em { font-style: italic; color: var(--gold-light); }
+.hero-sub {
+  color: var(--stone-400);
+  font-size: 15px;
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.hero-search {
+  display: flex;
+  gap: 8px;
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+.hero-search input {
+  flex: 1;
+  padding: 13px 18px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-size: 14px;
+  outline: none;
+  transition: .2s;
+}
+.hero-search input::placeholder { color: var(--stone-600); }
+.hero-search input:focus { border-color: var(--gold); background: rgba(255,255,255,.1); }
+.hero-search button {
+  background: var(--gold);
+  border: none;
+  color: var(--dark);
+  padding: 13px 22px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: .2s;
+}
+.hero-search button:hover { background: var(--gold-light); }
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat .val {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--white);
+  font-weight: 400;
+}
+.hero-stat .lbl {
+  font-size: 10px;
+  color: var(--stone-400);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  margin-top: 2px;
+}
+
+/* ════════════════════════════════════════
+   FILTER BAR
+════════════════════════════════════════ */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--stone-100);
+  padding: 12px 24px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 64px;
+  z-index: 100;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+.chip {
+  background: none;
+  border: 1px solid var(--stone-200);
+  color: var(--stone-600);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: .18s;
+}
+.chip:hover { border-color: var(--stone-800); color: var(--dark); }
+.chip.active { background: var(--dark); color: var(--white); border-color: var(--dark); }
+
+/* ════════════════════════════════════════
+   SHOP GRID
+════════════════════════════════════════ */
+.shop-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+.shop-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 28px;
+}
+.shop-meta h2 {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 400;
+}
+.shop-meta span { font-size: 13px; color: var(--stone-400); }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+.prod-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform .22s, box-shadow .22s;
+  border: 1px solid transparent;
+}
+.prod-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--stone-100);
+}
+.prod-img-wrap {
+  position: relative;
+  background: var(--stone-50);
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.prod-emoji {
+  font-size: 72px;
+  transition: transform .3s;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.1));
+}
+.prod-card:hover .prod-emoji { transform: scale(1.1) translateY(-4px); }
+.prod-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.badge-sale   { background: var(--gold); color: var(--dark); }
+.badge-new    { background: var(--dark); color: var(--gold); }
+.badge-pop    { background: var(--danger); color: var(--white); }
+.prod-body { padding: 18px; }
+.prod-cat {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--stone-400);
+  margin-bottom: 4px;
+}
+.prod-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.prod-price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+.prod-price { font-size: 16px; font-weight: 700; color: var(--gold); }
+.prod-old   { font-size: 12px; color: var(--stone-200); text-decoration: line-through; font-weight: 400; }
+.add-btn {
+  width: 100%;
+  background: var(--dark);
+  color: var(--white);
+  border: none;
+  padding: 11px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: .18s;
+}
+.add-btn:hover { background: var(--stone-800); }
+.add-btn:active { transform: scale(.98); }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--stone-400);
+  grid-column: 1/-1;
+}
+.empty-state .icon { font-size: 56px; margin-bottom: 16px; }
+.empty-state h3 {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--dark);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+/* ════════════════════════════════════════
+   PRODUCT DETAIL
+════════════════════════════════════════ */
+#view-product { background: var(--cream); min-height: calc(100vh - 64px); }
+.detail-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--stone-400);
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin-bottom: 28px;
+  transition: .15s;
+  padding: 0;
+}
+.back-link:hover { color: var(--dark); }
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.detail-image {
+  background: var(--stone-50);
+  border-radius: var(--radius-lg);
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 130px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 80px;
+}
+.detail-cat {
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--stone-400);
+  margin-bottom: 10px;
+}
+.detail-name {
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.detail-price {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.detail-desc {
+  font-size: 14px;
+  color: var(--stone-600);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+.qty-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--stone-400);
+  margin-bottom: 8px;
+}
+.qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.qty-ctrl {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--stone-200);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.qty-ctrl button {
+  background: none;
+  border: none;
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--stone-600);
+  transition: .15s;
+}
+.qty-ctrl button:hover { background: var(--stone-50); color: var(--dark); }
+.qty-ctrl .qty-num { padding: 0 16px; font-size: 16px; font-weight: 500; }
+.detail-add-btn {
+  width: 100%;
+  background: var(--dark);
+  color: var(--white);
+  border: none;
+  padding: 15px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.detail-add-btn:hover { background: var(--stone-800); }
+.detail-wa-btn {
+  width: 100%;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  padding: 13px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: .2s;
+}
+.detail-wa-btn:hover { background: #1ebe57; }
+.specs-block { margin-top: 28px; border-top: 1px solid var(--stone-100); padding-top: 24px; }
+.specs-title { font-size: 12px; text-transform: uppercase; letter-spacing: .15em; color: var(--stone-400); margin-bottom: 14px; font-weight: 500; }
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--stone-50);
+  font-size: 13px;
+}
+.spec-row:last-child { border: none; }
+.spec-key { color: var(--stone-400); }
+.spec-val { font-weight: 500; }
+
+/* ════════════════════════════════════════
+   CART
+════════════════════════════════════════ */
+#view-cart { background: var(--cream); min-height: calc(100vh - 64px); }
+.cart-wrap { max-width: 780px; margin: 0 auto; padding: 36px 24px 60px; }
+.cart-title {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+.cart-item {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--stone-50);
+  transition: .2s;
+}
+.cart-item:hover { box-shadow: var(--shadow); }
+.cart-img {
+  width: 72px;
+  height: 72px;
+  background: var(--stone-50);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.cart-info { flex: 1; min-width: 0; }
+.cart-item-cat { font-size: 10px; text-transform: uppercase; letter-spacing: .15em; color: var(--stone-400); }
+.cart-item-name { font-family: var(--serif); font-size: 20px; font-weight: 500; margin: 2px 0 6px; line-height: 1.2; }
+.cart-item-price { font-size: 15px; font-weight: 700; color: var(--gold); }
+.cart-controls { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.cart-qty { display: flex; align-items: center; border: 1px solid var(--stone-200); border-radius: var(--radius-sm); overflow: hidden; }
+.cart-qty button { background: none; border: none; width: 30px; height: 30px; cursor: pointer; font-size: 15px; color: var(--stone-600); transition: .15s; }
+.cart-qty button:hover { background: var(--stone-50); }
+.cart-qty .n { padding: 0 10px; font-size: 14px; font-weight: 500; }
+.remove-btn { background: none; border: none; color: var(--stone-200); font-size: 15px; cursor: pointer; padding: 6px; transition: .15s; }
+.remove-btn:hover { color: var(--danger); }
+.cart-summary {
+  background: var(--dark);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-top: 24px;
+  color: var(--white);
+}
+.sum-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 12px; }
+.sum-row .lbl { color: var(--stone-400); }
+.sum-row .val { font-weight: 500; }
+.sum-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 700;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 14px;
+  margin-top: 6px;
+}
+.sum-total .val { color: var(--gold); }
+.checkout-cta {
+  width: 100%;
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.checkout-cta:hover { background: var(--gold-light); }
+
+/* ════════════════════════════════════════
+   CHECKOUT
+════════════════════════════════════════ */
+#view-checkout { background: var(--cream); min-height: calc(100vh - 64px); }
+.checkout-wrap { max-width: 540px; margin: 0 auto; padding: 36px 24px 60px; }
+.checkout-wrap h2 { font-family: var(--serif); font-size: 34px; font-weight: 400; margin-bottom: 24px; }
+.card-block {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+  border: 1px solid var(--stone-50);
+}
+.card-block h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--stone-400);
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--stone-50);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--stone-400);
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--stone-100);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--dark);
+  background: var(--cream);
+  outline: none;
+  transition: .2s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: var(--gold); background: var(--white); }
+.field textarea { resize: none; height: 80px; }
+.pay-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.pay-option {
+  border: 2px solid var(--stone-100);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: .2s;
+}
+.pay-option:hover { border-color: var(--gold); }
+.pay-option.selected { border-color: var(--gold); background: var(--gold-pale); }
+.pay-logo { font-size: 28px; font-weight: 900; margin-bottom: 4px; }
+.pay-name { font-size: 13px; font-weight: 700; color: var(--dark); }
+.pay-dial { font-size: 11px; color: var(--stone-400); margin-top: 2px; }
+.momo-field { background: #FFFBF0 !important; border-color: var(--gold-light) !important; }
+.order-total-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--stone-100);
+  margin-top: 8px;
+  font-size: 17px;
+  font-weight: 700;
+}
+.order-total-bar .t { color: var(--gold); }
+.place-order-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 17px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.place-order-btn:hover { background: var(--gold-light); }
+.place-order-btn:disabled { background: var(--stone-100); color: var(--stone-400); cursor: not-allowed; }
+
+/* ════════════════════════════════════════
+   CONFIRMATION
+════════════════════════════════════════ */
+#view-confirm { background: var(--cream); min-height: calc(100vh - 64px); }
+.confirm-wrap { max-width: 520px; margin: 0 auto; padding: 60px 24px; text-align: center; }
+.confirm-check {
+  width: 84px;
+  height: 84px;
+  background: var(--success-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  margin: 0 auto 24px;
+}
+.confirm-wrap h2 { font-family: var(--serif); font-size: 40px; font-weight: 400; margin-bottom: 12px; }
+.confirm-wrap p { color: var(--stone-400); font-size: 15px; line-height: 1.7; margin-bottom: 32px; font-weight: 300; }
+.order-ref-box {
+  background: var(--white);
+  border: 1px solid var(--stone-100);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+.ref-label { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--stone-400); font-weight: 500; }
+.ref-num { font-family: var(--serif); font-size: 32px; font-weight: 600; color: var(--gold); margin-top: 6px; }
+.delivery-steps {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 32px;
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+}
+.d-step { display: flex; gap: 14px; margin-bottom: 18px; }
+.d-step:last-child { margin: 0; }
+.d-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.d-dot.done { background: var(--gold); color: var(--dark); }
+.d-dot.todo { background: var(--stone-100); color: var(--stone-400); }
+.d-text h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.d-text p { font-size: 13px; color: var(--stone-400); font-weight: 300; }
+.continue-btn {
+  background: var(--dark);
+  color: var(--white);
+  border: none;
+  padding: 14px 40px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition: .2s;
+}
+.continue-btn:hover { background: var(--stone-800); }
+
+/* ════════════════════════════════════════
+   ADMIN
+════════════════════════════════════════ */
+#view-admin { display: flex; min-height: calc(100vh - 64px); }
+.admin-sidebar {
+  width: 230px;
+  background: var(--dark);
+  flex-shrink: 0;
+  padding: 24px 0;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+.sidebar-section { margin-bottom: 24px; }
+.sidebar-title {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--stone-600);
+  padding: 0 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  color: var(--stone-400);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: .18s;
+}
+.sidebar-link:hover { color: var(--white); background: rgba(255,255,255,.05); }
+.sidebar-link.active { color: var(--white); background: rgba(255,255,255,.07); border-left-color: var(--gold); }
+.sidebar-link i { width: 16px; text-align: center; font-size: 13px; }
+.sidebar-divider { height: 1px; background: rgba(255,255,255,.07); margin: 12px 20px; }
+
+.admin-body { flex: 1; padding: 32px; background: var(--cream); overflow-y: auto; }
+.admin-page { display: none; }
+.admin-page.active { display: block; }
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.admin-page-header h2 { font-family: var(--serif); font-size: 30px; font-weight: 400; }
+.admin-page-header .meta { font-size: 13px; color: var(--stone-400); }
+.action-pill {
+  background: var(--gold);
+  border: none;
+  color: var(--dark);
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  transition: .2s;
+}
+.action-pill:hover { background: var(--gold-light); }
+
+/* Stat cards */
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--stone-50);
+}
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.stat-number { font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1; color: var(--dark); }
+.stat-label { font-size: 12px; color: var(--stone-400); margin-top: 5px; }
+.stat-trend { font-size: 11px; font-weight: 600; margin-top: 10px; }
+.trend-up   { color: var(--success); }
+.trend-down { color: var(--danger); }
+
+/* Revenue bars */
+.rev-chart {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+  border: 1px solid var(--stone-50);
+}
+.rev-chart h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.rev-chart .sub { font-size: 12px; color: var(--stone-400); margin-bottom: 24px; }
+.bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 130px; }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bar-amount { font-size: 9px; color: var(--stone-400); font-weight: 600; }
+.bar-fill {
+  width: 100%;
+  background: linear-gradient(to top, var(--gold), var(--gold-light));
+  border-radius: 3px 3px 0 0;
+  min-height: 4px;
+  transition: height .6s ease;
+}
+.bar-month { font-size: 10px; color: var(--stone-400); }
+
+/* Two col */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* Table card */
+.table-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--stone-50);
+}
+.table-card-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--stone-50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-card-head h3 { font-size: 14px; font-weight: 600; }
+.table-card-head .see-all { font-size: 12px; color: var(--gold); cursor: pointer; font-weight: 500; }
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--stone-400);
+  border-bottom: 1px solid var(--stone-50);
+  font-weight: 600;
+  white-space: nowrap;
+}
+tbody td { padding: 13px 16px; font-size: 13px; border-bottom: 1px solid var(--stone-50); vertical-align: middle; }
+tbody tr:last-child td { border: none; }
+tbody tr:hover td { background: #FDFAF7; }
+
+/* Status pills */
+.status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  white-space: nowrap;
+}
+.s-pending    { background: var(--warn-bg);    color: var(--warn); }
+.s-confirmed  { background: var(--info-bg);    color: var(--info); }
+.s-in-transit { background: var(--purple-bg);  color: var(--purple); }
+.s-delivered  { background: var(--success-bg); color: var(--success); }
+.s-cancelled  { background: var(--danger-bg);  color: var(--danger); }
+
+.tbl-btn {
+  background: none;
+  border: 1px solid var(--stone-200);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: var(--sans);
+  color: var(--stone-600);
+  transition: .15s;
+}
+.tbl-btn:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
+.status-select {
+  font-size: 11px;
+  padding: 4px 8px;
+  border: 1px solid var(--stone-200);
+  border-radius: 4px;
+  background: var(--cream);
+  cursor: pointer;
+  font-family: var(--sans);
+  color: var(--stone-600);
+  outline: none;
+}
+.status-select:focus { border-color: var(--gold); }
+
+/* Top products list */
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--stone-50);
+}
+.top-item:last-child { border: none; }
+.top-emoji { width: 40px; height: 40px; background: var(--stone-50); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.top-name { flex: 1; font-size: 13px; font-weight: 500; }
+.top-cat  { font-size: 11px; color: var(--stone-400); }
+.top-price { font-size: 13px; font-weight: 700; color: var(--gold); }
+
+/* Product manage */
+.prod-manage {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--stone-50);
+}
+.prod-manage h3 { font-size: 14px; font-weight: 600; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--stone-50); }
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+#toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: var(--dark);
+  color: var(--white);
+  padding: 14px 22px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: transform .35s, opacity .35s;
+  pointer-events: none;
+  border-left: 3px solid var(--gold);
+}
+#toast.show { transform: translateY(0); opacity: 1; }
+#toast i { color: var(--gold); }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  background: var(--dark);
+  color: var(--stone-400);
+  padding: 40px 28px 24px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  margin-bottom: 32px;
+  align-items: start;
+}
+.footer-logo { font-family: var(--serif); font-size: 24px; color: var(--white); letter-spacing: .15em; margin-bottom: 8px; }
+.footer-desc { font-size: 13px; line-height: 1.7; font-weight: 300; max-width: 300px; }
+.footer-social { display: flex; gap: 16px; }
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stone-400);
+  font-size: 14px;
+  cursor: pointer;
+  transition: .2s;
+  text-decoration: none;
+}
+.social-btn:hover { background: var(--gold); color: var(--dark); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: var(--stone-600); cursor: pointer; transition: .15s; }
+.footer-links a:hover { color: var(--stone-400); }
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-center { display: none; }
+  .mobile-menu-btn { display: flex; }
+  .owner-btn { display: none; }
+  .hero { padding: 52px 20px 44px; }
+  .hero-stats { gap: 24px; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .detail-image { position: static; height: 280px; font-size: 80px; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .pay-options { grid-template-columns: 1fr 1fr; }
+  #view-admin { flex-direction: column; }
+  .admin-sidebar { width: 100%; height: auto; position: static; display: flex; overflow-x: auto; padding: 8px 12px; gap: 4px; }
+  .sidebar-section { display: flex; gap: 4px; margin: 0; }
+  .sidebar-title, .sidebar-divider { display: none; }
+  .sidebar-link { border-left: none; border-bottom: 2px solid transparent; padding: 8px 12px; white-space: nowrap; border-radius: var(--radius-sm); font-size: 12px; }
+  .sidebar-link.active { border-bottom-color: var(--gold); border-left: none; }
+  .admin-body { padding: 20px 16px; }
+  .footer-top { grid-template-columns: 1fr; gap: 20px; }
+  .footer-bottom { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ NAVIGATION ════════ -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="showView('shop')">EL<span>·</span>CREDO</div>
+  <div class="nav-center">
+    <button class="nav-tab active" onclick="showView('shop')"><i class="fas fa-store" style="margin-right:5px"></i>Shop</button>
+    <button class="nav-tab" onclick="showView('cart')">Cart</button>
+    <button class="nav-tab" onclick="showView('admin')"><i class="fas fa-cog" style="margin-right:5px"></i>Dashboard</button>
+  </div>
+  <div class="nav-right">
+    <button class="cart-pill" onclick="showView('cart')">
+      <i class="fas fa-shopping-bag"></i>
+      <span id="cart-count" class="cart-badge">0</span>
+    </button>
+    <button class="owner-btn" onclick="showView('admin')">Owner Dashboard</button>
+    <button class="mobile-menu-btn" onclick="openMobileMenu()"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <div class="mobile-menu-header">
+    <div class="nav-logo">EL<span style="color:var(--gold)">·</span>CREDO</div>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="mobile-nav-links">
+    <div class="mobile-nav-link" onclick="closeMobileMenu();showView('shop')">Shop</div>
+    <div class="mobile-nav-link" onclick="closeMobileMenu();showView('cart')">My Cart</div>
+    <div class="mobile-nav-link" onclick="closeMobileMenu();showView('admin')">Owner Dashboard</div>
+  </div>
+  <button class="mobile-cta" onclick="closeMobileMenu();showView('checkout')">Checkout</button>
+</div>
+
+<!-- Toast -->
+<div id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg">Done!</span></div>
+
+<!-- ════════════════════════════════════════
+     SHOP VIEW
+════════════════════════════════════════ -->
+<div id="view-shop">
+
+  <div class="hero">
+    <div class="hero-tag"><i class="fas fa-map-marker-alt" style="margin-right:6px"></i>Kigali, Rwanda — Bespoke Furniture</div>
+    <h1>Luxury Furniture,<br><em>Delivered to Your Door</em></h1>
+    <p class="hero-sub">Order online, pay via Mobile Money, and we'll manufacture and deliver your bespoke piece across Kigali.</p>
+    <div class="hero-search">
+      <input type="text" id="search-input" placeholder="Search sofas, kitchens, wardrobes…" oninput="renderProducts()">
+      <button onclick="renderProducts()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="val">200+</div><div class="lbl">Projects Done</div></div>
+      <div class="hero-stat"><div class="val">8 yrs</div><div class="lbl">Craftsmanship</div></div>
+      <div class="hero-stat"><div class="val">Kigali</div><div class="lbl">& East Africa</div></div>
+    </div>
+  </div>
+
+  <div class="filter-bar" id="filter-bar">
+    <button class="chip active" onclick="setCategory('All',this)">All</button>
+    <button class="chip" onclick="setCategory('Sofas',this)">Sofas & Seating</button>
+    <button class="chip" onclick="setCategory('Kitchens',this)">Kitchens</button>
+    <button class="chip" onclick="setCategory('Wardrobes',this)">Wardrobes</button>
+    <button class="chip" onclick="setCategory('Dining',this)">Dining Sets</button>
+    <button class="chip" onclick="setCategory('Media Walls',this)">Media Walls</button>
+    <button class="chip" onclick="setCategory('Beds',this)">Beds</button>
+    <button class="chip" onclick="setCategory('Outdoor',this)">Outdoor</button>
+  </div>
+
+  <div class="shop-wrap">
+    <div class="shop-meta">
+      <h2 id="cat-title">All Collections</h2>
+      <span id="prod-count">8 items</span>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+
+  <!-- Footer inside shop -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">EL·CREDO</div>
+        <p class="footer-desc">Bespoke furniture and interior installations crafted in Kigali, Rwanda. Order online and we deliver to your door.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--stone-600);margin-bottom:12px;font-weight:600;">Follow Us</div>
+        <div class="footer-social">
+          <a class="social-btn" href="https://www.youtube.com/@el-credo?si=mPS20xpGvTnCE2sD" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a class="social-btn" href="https://www.tiktok.com/@elcredofurnitures" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a class="social-btn" href="https://www.facebook.com/profile.php?id=100089629328155" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a class="social-btn" href="https://wa.me/250788496221" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 EL-CREDO BUSINESS LTD · Makuza Peace Plaza, Kigali</span>
+      <div class="footer-links">
+        <a>+250 788 496 221</a>
+        <a>Mon–Sat 07:30–19:00</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════
+     PRODUCT DETAIL VIEW
+════════════════════════════════════════ -->
+<div id="view-product" class="hide">
+  <div class="detail-wrap">
+    <button class="back-link" onclick="showView('shop')"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+    <div class="detail-grid" id="detail-inner"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     CART VIEW
+════════════════════════════════════════ -->
+<div id="view-cart" class="hide">
+  <div class="cart-wrap">
+    <button class="back-link" onclick="showView('shop')"><i class="fas fa-arrow-left"></i> Continue Shopping</button>
+    <h2 class="cart-title">Your Cart</h2>
+    <div id="cart-items"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     CHECKOUT VIEW
+════════════════════════════════════════ -->
+<div id="view-checkout" class="hide">
+  <div class="checkout-wrap">
+    <button class="back-link" onclick="showView('cart')"><i class="fas fa-arrow-left"></i> Back to Cart</button>
+    <h2>Checkout</h2>
+
+    <div class="card-block">
+      <h3><i class="fas fa-truck" style="margin-right:8px"></i>Delivery Details</h3>
+      <div class="field-row">
+        <div class="field"><label>First Name *</label><input id="co-first" placeholder="Jean"></div>
+        <div class="field"><label>Last Name *</label><input id="co-last" placeholder="Mutabazi"></div>
+      </div>
+      <div class="field"><label>WhatsApp / Phone *</label><input id="co-phone" placeholder="+250 7XX XXX XXX"></div>
+      <div class="field"><label>Delivery Address, Kigali *</label><input id="co-addr" placeholder="Sector, street, landmark…"></div>
+      <div class="field"><label>Delivery Notes (optional)</label><textarea id="co-notes" placeholder="Gate code, preferred time, building name…"></textarea></div>
+    </div>
+
+    <div class="card-block">
+      <h3><i class="fas fa-mobile-alt" style="margin-right:8px"></i>Mobile Money Payment</h3>
+      <div class="pay-options">
+        <div class="pay-option selected" id="opt-mtn" onclick="choosePay('mtn')">
+          <div class="pay-logo" style="color:#B8860B">M</div>
+          <div class="pay-name">MTN MoMo</div>
+          <div class="pay-dial">Dial *182#</div>
+        </div>
+        <div class="pay-option" id="opt-airtel" onclick="choosePay('airtel')">
+          <div class="pay-logo" style="color:var(--airtel)">A</div>
+          <div class="pay-name">Airtel Money</div>
+          <div class="pay-dial">Dial *185#</div>
+        </div>
+      </div>
+      <div class="field">
+        <label id="momo-label">MTN MoMo Number *</label>
+        <input id="co-momo" class="momo-field" placeholder="078X XXX XXX">
+      </div>
+      <p style="font-size:12px;color:var(--stone-400);line-height:1.6;margin-top:8px;">
+        <i class="fas fa-info-circle" style="margin-right:4px"></i>
+        After placing your order, send the total to our Mobile Money number. We'll confirm payment via WhatsApp before starting manufacturing.
+      </p>
+      <div class="order-total-bar">
+        <span>Total to Pay</span>
+        <span class="t" id="checkout-total">RWF 0</span>
+      </div>
+    </div>
+
+    <button class="place-order-btn" onclick="placeOrder()">
+      <i class="fas fa-lock"></i> Confirm & Place Order
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ORDER CONFIRMATION VIEW
+════════════════════════════════════════ -->
+<div id="view-confirm" class="hide">
+  <div class="confirm-wrap">
+    <div class="confirm-check">✅</div>
+    <h2>Order Placed!</h2>
+    <p>Thank you! Your order is confirmed. We'll reach out on WhatsApp within the hour to confirm your payment and arrange delivery.</p>
+    <div class="order-ref-box">
+      <div class="ref-label">Order Reference Number</div>
+      <div class="ref-num" id="confirm-ref">#EC-0000</div>
+    </div>
+    <div class="delivery-steps">
+      <div class="d-step">
+        <div class="d-dot done">✓</div>
+        <div class="d-text"><h4>Order Received</h4><p>We have your request in our system.</p></div>
+      </div>
+      <div class="d-step">
+        <div class="d-dot todo">2</div>
+        <div class="d-text"><h4>Payment Confirmation</h4><p>Send Mobile Money — we confirm via WhatsApp.</p></div>
+      </div>
+      <div class="d-step">
+        <div class="d-dot todo">3</div>
+        <div class="d-text"><h4>Manufacturing</h4><p>Your bespoke piece enters our workshop.</p></div>
+      </div>
+      <div class="d-step">
+        <div class="d-dot todo">4</div>
+        <div class="d-text"><h4>Delivery to Your Door</h4><p>Professional installation across Kigali.</p></div>
+      </div>
+    </div>
+    <button class="continue-btn" onclick="showView('shop')">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ADMIN VIEW
+════════════════════════════════════════ -->
+<div id="view-admin" class="hide">
+
+  <div class="admin-sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Main</div>
+      <div class="sidebar-link active" onclick="adminTab('overview',this)"><i class="fas fa-chart-line"></i> Overview</div>
+      <div class="sidebar-link" onclick="adminTab('orders',this)"><i class="fas fa-box-open"></i> Orders</div>
+      <div class="sidebar-link" onclick="adminTab('products',this)"><i class="fas fa-couch"></i> Products</div>
+      <div class="sidebar-link" onclick="adminTab('customers',this)"><i class="fas fa-users"></i> Customers</div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-link" onclick="showView('shop')"><i class="fas fa-store"></i> View Store</div>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- OVERVIEW -->
+    <div class="admin-page active" id="page-overview">
+      <div class="admin-page-header">
+        <h2>Dashboard</h2>
+        <span class="meta">EL-CREDO · Kigali, Rwanda</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--warn-bg)">💰</div>
+          <div class="stat-number">RWF 29.1M</div>
+          <div class="stat-label">Total Revenue</div>
+          <div class="stat-trend trend-up">↑ 32% vs last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--info-bg)">📦</div>
+          <div class="stat-number" id="stat-orders">5</div>
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-trend trend-up">↑ 5 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--danger-bg)">⏳</div>
+          <div class="stat-number" id="stat-pending">2</div>
+          <div class="stat-label">Pending Orders</div>
+          <div class="stat-trend trend-down" id="stat-pending-txt">Needs attention</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:var(--success-bg)">👥</div>
+          <div class="stat-number">5</div>
+          <div class="stat-label">Customers</div>
+          <div class="stat-trend trend-up">↑ 2 this week</div>
+        </div>
+      </div>
+
+      <div class="rev-chart">
+        <h3>Monthly Revenue</h3>
+        <p class="sub">Last 6 months — RWF</p>
+        <div class="bar-chart" id="rev-chart-bars"></div>
+      </div>
+
+      <div class="two-col">
+        <div class="table-card">
+          <div class="table-card-head">
+            <h3>Recent Orders</h3>
+            <span class="see-all" onclick="adminTab('orders', document.querySelectorAll('.sidebar-link')[1])">View all →</span>
+          </div>
+          <table>
+            <thead><tr><th>Ref</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead>
+            <tbody id="recent-orders-body"></tbody>
+          </table>
+        </div>
+        <div class="table-card">
+          <div class="table-card-head"><h3>Top Products</h3></div>
+          <div id="top-prods-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div class="admin-page" id="page-orders">
+      <div class="admin-page-header">
+        <h2>All Orders</h2>
+        <button class="action-pill" onclick="toast('CSV exported!')"><i class="fas fa-download" style="margin-right:6px"></i>Export CSV</button>
+      </div>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Ref</th><th>Customer</th><th>Phone</th><th>Items</th>
+              <th>Total</th><th>Payment</th><th>Date</th><th>Status</th><th>Update</th>
+            </tr>
+          </thead>
+          <tbody id="all-orders-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="admin-page" id="page-products">
+      <div class="admin-page-header">
+        <h2>Products</h2>
+        <span class="meta" id="prod-admin-count"></span>
+      </div>
+      <div class="two-col" style="align-items:start">
+        <div class="table-card">
+          <div class="table-card-head"><h3>Product Catalog</h3></div>
+          <table>
+            <thead><tr><th>Product</th><th>Category</th><th>Price</th><th></th></tr></thead>
+            <tbody id="prod-admin-body"></tbody>
+          </table>
+        </div>
+        <div class="prod-manage">
+          <h3><i class="fas fa-plus" style="margin-right:6px;color:var(--gold)"></i>Add New Product</h3>
+          <div class="field"><label>Product Name</label><input id="new-name" placeholder="e.g. Velvet Accent Chair"></div>
+          <div class="field"><label>Category</label>
+            <select id="new-cat">
+              <option>Sofas</option><option>Kitchens</option><option>Wardrobes</option>
+              <option>Dining</option><option>Media Walls</option><option>Beds</option><option>Outdoor</option>
+            </select>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Price (RWF)</label><input id="new-price" type="number" placeholder="850000"></div>
+            <div class="field"><label>Old Price (RWF)</label><input id="new-old" type="number" placeholder="Optional"></div>
+          </div>
+          <div class="field"><label>Description</label><textarea id="new-desc" placeholder="Describe the materials, style, dimensions…"></textarea></div>
+          <div class="field"><label>Badge</label>
+            <select id="new-badge"><option value="">None</option><option value="New">New</option><option value="Popular">Popular</option><option value="Sale">Sale</option></select>
+          </div>
+          <button class="action-pill" style="width:100%;padding:12px;font-size:13px" onclick="addProduct()">
+            <i class="fas fa-save" style="margin-right:6px"></i>Save Product
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS -->
+    <div class="admin-page" id="page-customers">
+      <div class="admin-page-header">
+        <h2>Customers</h2>
+        <span class="meta" id="cust-count-label"></span>
+      </div>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Phone</th><th>Orders</th><th>Total Spent</th><th>Joined</th><th>Tier</th><th>Contact</th></tr>
+          </thead>
+          <tbody id="customers-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /admin-body -->
+</div><!-- /view-admin -->
+
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+/* ── DATA ── */
+const PRODUCTS = [
+  {id:1,emoji:'🛋️',name:'Ivory Boucle Sofa',cat:'Sofas',price:1850000,oldPrice:2100000,badge:'Sale',
+   desc:'Statement piece upholstered in premium boucle fabric. Solid hardwood frame, high-density foam cushions, built for both comfort and aesthetics.',
+   specs:{Material:'Premium Boucle Fabric',Frame:'Solid Hardwood',Seats:'3-seater',Delivery:'7–14 days',Warranty:'2 years'}},
+  {id:2,emoji:'🍳',name:'Slate Grey Kitchen',cat:'Kitchens',price:4500000,badge:'Popular',
+   desc:'Full modular kitchen with slate-grey lacquer cabinets, quartz countertop, Italian soft-close hardware, and integrated LED strip lighting.',
+   specs:{Finish:'Lacquer Slate Grey',Countertop:'Quartz',Hardware:'Italian soft-close',Delivery:'21–30 days',Warranty:'3 years'}},
+  {id:3,emoji:'📺',name:'Fluted Media Wall',cat:'Media Walls',price:980000,badge:'New',
+   desc:'Floor-to-ceiling fluted MDF panel with concealed cable management, floating shelves, and warm ambient backlit LED strip.',
+   specs:{Material:'MDF + Wood Veneer',Finish:'Natural Oak',TVSize:'Up to 75"',Delivery:'14–21 days',Warranty:'2 years'}},
+  {id:4,emoji:'👔',name:'Walk-In Wardrobe',cat:'Wardrobes',price:2200000,badge:null,
+   desc:'Bespoke walk-in wardrobe with island drawer unit, full-length mirror, velvet-lined jewellery trays, and LED rail lighting throughout.',
+   specs:{Material:'E1 MDF',Finish:'Matte White + Gold handles',Size:'Fully custom',Delivery:'21–30 days',Warranty:'3 years'}},
+  {id:5,emoji:'🍽️',name:'Marble Dining Table',cat:'Dining',price:1350000,oldPrice:1600000,badge:'Sale',
+   desc:'6-seater dining table with a solid Carrara marble top resting on a powder-coated steel base. Bold, elegant, built to last generations.',
+   specs:{Top:'Carrara Marble',Base:'Powder-coated steel',Seats:'6',Delivery:'14 days',Warranty:'1 year'}},
+  {id:6,emoji:'🛏️',name:'King Bed Frame',cat:'Beds',price:1100000,badge:null,
+   desc:'Upholstered king bed with channel-tufted velvet headboard, solid oak legs, and USB-A + USB-C charging ports built into both side rails.',
+   specs:{Size:'King (180×200 cm)',Fabric:'Velvet',Legs:'Solid oak',Delivery:'10–14 days',Warranty:'2 years'}},
+  {id:7,emoji:'🛋️',name:'L-Shape Corner Sofa',cat:'Sofas',price:2400000,badge:'Popular',
+   desc:'XL modular corner sofa in premium linen with deep feather-wrapped cushions. Reconfigurable layout for any living space.',
+   specs:{Material:'Linen + Feather fill',Frame:'Hardwood',Config:'L-Shape modular',Delivery:'14–21 days',Warranty:'2 years'}},
+  {id:8,emoji:'🍳',name:'Compact Studio Kitchen',cat:'Kitchens',price:2800000,badge:'New',
+   desc:'Smart handleless kitchen designed for studio and apartment living — built-in oven niche, integrated fridge cavity, and engineered stone countertop.',
+   specs:{Finish:'High-gloss White',Countertop:'Engineered stone',Delivery:'21 days',Warranty:'2 years'}},
+  {id:9,emoji:'🌿',name:'Teak Garden Set',cat:'Outdoor',price:850000,badge:'New',
+   desc:'4-piece outdoor teak dining set: table + 2 chairs + bench. Treated for tropical weather. Cushions included.',
+   specs:{Material:'Grade-A teak',Treatment:'Weatherproof oil',Seats:'4',Delivery:'10–14 days',Warranty:'1 year'}},
+];
+
+const REVENUE = [
+  {m:'Nov',v:3200000},{m:'Dec',v:5100000},{m:'Jan',v:4200000},
+  {m:'Feb',v:3800000},{m:'Mar',v:5600000},{m:'Apr',v:7411000},
+];
+
+let ORDERS = [
+  {ref:'#EC-1041',customer:'Alice Uwimana',phone:'078 123 4567',items:'Ivory Boucle Sofa ×1',total:1850000,pay:'MTN MoMo',status:'delivered',date:'Apr 28'},
+  {ref:'#EC-1040',customer:'Claude Niyonzima',phone:'072 987 6543',items:'Fluted Media Wall ×1',total:980000,pay:'Airtel Money',status:'in-transit',date:'Apr 30'},
+  {ref:'#EC-1039',customer:'Diane Mukamana',phone:'073 555 0012',items:'Marble Dining Table ×1',total:1350000,pay:'MTN MoMo',status:'confirmed',date:'May 01'},
+  {ref:'#EC-1038',customer:'Eric Habimana',phone:'078 300 7890',items:'Walk-In Wardrobe ×1',total:2200000,pay:'MTN MoMo',status:'pending',date:'May 02'},
+  {ref:'#EC-1037',customer:'Fiona Ingabire',phone:'072 111 2233',items:'King Bed Frame ×1',total:1100000,pay:'Airtel Money',status:'pending',date:'May 03'},
+];
+
+const CUSTOMERS = [
+  {name:'Alice Uwimana',phone:'078 123 4567',orders:3,total:4780000,joined:'Jan 2024',tier:'VIP'},
+  {name:'Claude Niyonzima',phone:'072 987 6543',orders:1,total:980000,joined:'Apr 2024',tier:'Regular'},
+  {name:'Diane Mukamana',phone:'073 555 0012',orders:2,total:2500000,joined:'Feb 2024',tier:'Regular'},
+  {name:'Eric Habimana',phone:'078 300 7890',orders:1,total:2200000,joined:'May 2024',tier:'New'},
+  {name:'Fiona Ingabire',phone:'072 111 2233',orders:1,total:1100000,joined:'May 2024',tier:'New'},
+];
+
+/* ── STATE ── */
+let cart = [];
+let detailQty = 1;
+let activeCategory = 'All';
+let activePay = 'mtn';
+
+/* ── UTILS ── */
+const fmt = n => 'RWF ' + n.toLocaleString();
+const cartTotal = () => cart.reduce((s,x) => s + x.price * x.qty, 0);
+const cartCount = () => cart.reduce((s,x) => s + x.qty, 0);
+
+function toast(msg) {
+  document.getElementById('toast-msg').textContent = msg;
+  const el = document.getElementById('toast');
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+/* ── VIEW ROUTER ── */
+function showView(v) {
+  const views = ['shop','product','cart','checkout','confirm','admin'];
+  views.forEach(id => document.getElementById('view-'+id).classList.toggle('hide', id !== v));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  if(v === 'shop')  { document.querySelectorAll('.nav-tab')[0].classList.add('active'); renderProducts(); }
+  if(v === 'cart')  { document.querySelectorAll('.nav-tab')[1].classList.add('active'); renderCart(); }
+  if(v === 'checkout') { document.getElementById('checkout-total').textContent = fmt(cartTotal()); }
+  if(v === 'admin') { document.querySelectorAll('.nav-tab')[2].classList.add('active'); renderAdmin(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ── MOBILE MENU ── */
+function openMobileMenu()  { document.getElementById('mobile-menu').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── SHOP ── */
+function setCategory(cat, btn) {
+  activeCategory = cat;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cat-title').textContent = cat === 'All' ? 'All Collections' : cat;
+  renderProducts();
+}
+
+function renderProducts() {
+  const q = (document.getElementById('search-input')||{value:''}).value.toLowerCase();
+  const prods = PRODUCTS.filter(p =>
+    (activeCategory === 'All' || p.cat === activeCategory) &&
+    (!q || p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q))
+  );
+  document.getElementById('prod-count').textContent = prods.length + ' item' + (prods.length!==1?'s':'');
+  const BADGE_CLASS = {Sale:'badge-sale',New:'badge-new',Popular:'badge-pop'};
+  document.getElementById('product-grid').innerHTML = prods.length === 0
+    ? `<div class="empty-state"><div class="icon">🔍</div><h3>No products found</h3><p>Try a different search or category.</p></div>`
+    : prods.map(p => `
+      <div class="prod-card" onclick="openProduct(${p.id})">
+        <div class="prod-img-wrap">
+          <span class="prod-emoji">${p.emoji}</span>
+          ${p.badge ? `<span class="prod-badge ${BADGE_CLASS[p.badge]||''}">${p.badge}</span>` : ''}
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">${p.cat}</div>
+          <div class="prod-name">${p.name}</div>
+          <div class="prod-price-row">
+            <span class="prod-price">${fmt(p.price)}</span>
+            ${p.oldPrice ? `<span class="prod-old">${fmt(p.oldPrice)}</span>` : ''}
+          </div>
+          <button class="add-btn" onclick="event.stopPropagation();addToCart(${p.id})">
+            <i class="fas fa-bag-shopping" style="margin-right:6px"></i>Add to Cart
+          </button>
+        </div>
+      </div>`).join('');
+}
+
+function openProduct(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  detailQty = 1;
+  document.getElementById('detail-inner').innerHTML = `
+    <div class="detail-image">${p.emoji}</div>
+    <div>
+      <div class="detail-cat">${p.cat}</div>
+      <h2 class="detail-name">${p.name}</h2>
+      <div class="detail-price">${fmt(p.price)}${p.oldPrice?` <span style="font-size:16px;color:var(--stone-200);text-decoration:line-through;font-weight:400">${fmt(p.oldPrice)}</span>`:''}</div>
+      <p class="detail-desc">${p.desc}</p>
+      <div class="qty-label">Quantity</div>
+      <div class="qty-row">
+        <div class="qty-ctrl">
+          <button onclick="changeDetailQty(-1)">−</button>
+          <span class="qty-num" id="dq">${detailQty}</span>
+          <button onclick="changeDetailQty(1)">+</button>
+        </div>
+        <span style="font-size:13px;color:var(--stone-400)">Subtotal: <b style="color:var(--gold)" id="dq-total">${fmt(p.price)}</b></span>
+      </div>
+      <button class="detail-add-btn" onclick="addToCartQty(${p.id})">
+        <i class="fas fa-bag-shopping"></i> Add to Cart
+      </button>
+      <button class="detail-wa-btn" onclick="window.open('https://wa.me/250788496221?text='+encodeURIComponent('Hi EL-CREDO! I am interested in ${p.name} (${fmt(p.price)}). Please get in touch.'),'_blank')">
+        <i class="fab fa-whatsapp" style="font-size:18px"></i> Enquire via WhatsApp
+      </button>
+      <div class="specs-block">
+        <div class="specs-title">Specifications</div>
+        ${Object.entries(p.specs).map(([k,v]) => `<div class="spec-row"><span class="spec-key">${k}</span><span class="spec-val">${v}</span></div>`).join('')}
+      </div>
+    </div>`;
+  showView('product');
+  window._dprod = p;
+}
+
+function changeDetailQty(d) {
+  detailQty = Math.max(1, detailQty + d);
+  document.getElementById('dq').textContent = detailQty;
+  if(window._dprod) document.getElementById('dq-total').textContent = fmt(window._dprod.price * detailQty);
+}
+
+function addToCartQty(id) {
+  for(let i=0; i<detailQty; i++) addToCart(id, true);
+  toast(`${detailQty > 1 ? detailQty+'× ' : ''}${window._dprod.name} added to cart!`);
+  showView('cart');
+}
+
+/* ── CART ── */
+function addToCart(id, silent) {
+  const p = PRODUCTS.find(x => x.id === id);
+  const ex = cart.find(x => x.id === id);
+  if(ex) ex.qty++; else cart.push({...p, qty:1});
+  updateBadge();
+  if(!silent) toast(p.name + ' added to cart!');
+}
+
+function updateBadge() {
+  document.getElementById('cart-count').textContent = cartCount();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateBadge();
+  renderCart();
+}
+
+function changeQty(id, d) {
+  const item = cart.find(x => x.id === id);
+  if(item) item.qty = Math.max(1, item.qty + d);
+  renderCart();
+}
+
+function renderCart() {
+  const el = document.getElementById('cart-items');
+  if(cart.length === 0) {
+    el.innerHTML = `<div style="text-align:center;padding:80px 0;color:var(--stone-400)">
+      <div style="font-size:60px;margin-bottom:16px">🛒</div>
+      <h3 style="font-family:var(--serif);font-size:28px;font-weight:400;color:var(--dark);margin-bottom:8px">Your cart is empty</h3>
+      <p style="font-weight:300">Browse our collections and add something beautiful.</p>
+      <button onclick="showView('shop')" style="margin-top:24px;background:var(--dark);color:var(--white);border:none;padding:12px 28px;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.06em;text-transform:uppercase">Browse Collections</button>
+    </div>`;
+    return;
+  }
+  el.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-img">${item.emoji}</div>
+      <div class="cart-info">
+        <div class="cart-item-cat">${item.cat}</div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${fmt(item.price * item.qty)}</div>
+      </div>
+      <div class="cart-controls">
+        <div class="cart-qty">
+          <button onclick="changeQty(${item.id},-1)">−</button>
+          <span class="n">${item.qty}</span>
+          <button onclick="changeQty(${item.id},1)">+</button>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button>
+      </div>
+    </div>`).join('') + `
+    <div class="cart-summary">
+      <div class="sum-row"><span class="lbl">Subtotal</span><span class="val">${fmt(cartTotal())}</span></div>
+      <div class="sum-row"><span class="lbl">Delivery (Kigali)</span><span class="val" style="color:#5A9E7A">Free</span></div>
+      <div class="sum-row"><span class="lbl">Payment</span><span class="val">MTN MoMo / Airtel</span></div>
+      <div class="sum-total"><span>Total</span><span class="val">${fmt(cartTotal())}</span></div>
+      <button class="checkout-cta" onclick="showView('checkout')">
+        <i class="fas fa-lock"></i> Proceed to Checkout
+      </button>
+    </div>`;
+}
+
+/* ── CHECKOUT ── */
+function choosePay(type) {
+  activePay = type;
+  document.getElementById('opt-mtn').classList.toggle('selected', type === 'mtn');
+  document.getElementById('opt-airtel').classList.toggle('selected', type === 'airtel');
+  document.getElementById('momo-label').textContent = type === 'mtn' ? 'MTN MoMo Number *' : 'Airtel Money Number *';
+}
+
+function placeOrder() {
+  const fname = document.getElementById('co-first').value.trim();
+  const lname = document.getElementById('co-last').value.trim();
+  const phone = document.getElementById('co-phone').value.trim();
+  const addr  = document.getElementById('co-addr').value.trim();
+  if (!fname || !phone || !addr) { toast('Please fill in name, phone and address.'); return; }
+
+  const ref = '#EC-' + (1042 + Math.floor(Math.random() * 900));
+  const newOrder = {
+    ref,
+    customer: fname + ' ' + lname,
+    phone,
+    items: cart.map(x => x.name + ' ×' + x.qty).join(', '),
+    total: cartTotal(),
+    pay: activePay === 'mtn' ? 'MTN MoMo' : 'Airtel Money',
+    status: 'pending',
+    date: 'Today'
+  };
+
+  ORDERS.unshift(newOrder);
+  cart = [];
+  updateBadge();
+  document.getElementById('confirm-ref').textContent = ref;
+
+  // Open WhatsApp
+  const notes = document.getElementById('co-notes').value;
+  const wa = encodeURIComponent(
+    `Hello EL-CREDO!\n\nNew Order: ${ref}\nName: ${fname} ${lname}\nPhone: ${phone}\nAddress: ${addr}\nItems: ${newOrder.items}\nTotal: ${fmt(newOrder.total)}\nPayment: ${newOrder.pay}` +
+    (notes ? `\nNotes: ${notes}` : '')
+  );
+  setTimeout(() => window.open(`https://wa.me/250788496221?text=${wa}`, '_blank'), 600);
+
+  showView('confirm');
+}
+
+/* ── ADMIN ── */
+function adminTab(tab, el) {
+  document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + tab).classList.add('active');
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function renderAdmin() {
+  const pending = ORDERS.filter(o => o.status === 'pending').length;
+
+  // Stat cards update
+  document.getElementById('stat-orders').textContent = ORDERS.length;
+  document.getElementById('stat-pending').textContent = pending;
+  document.getElementById('stat-pending-txt').textContent = pending > 3 ? 'Needs attention' : pending > 0 ? 'In queue' : 'All clear';
+
+  // Revenue bars
+  const maxRev = Math.max(...REVENUE.map(r => r.v));
+  document.getElementById('rev-chart-bars').innerHTML = REVENUE.map(r => `
+    <div class="bar-col">
+      <span class="bar-amount">${(r.v/1000000).toFixed(1)}M</span>
+      <div class="bar-fill" style="height:${(r.v/maxRev)*100}%"></div>
+      <span class="bar-month">${r.m}</span>
+    </div>`).join('');
+
+  // Recent orders
+  document.getElementById('recent-orders-body').innerHTML = ORDERS.slice(0,4).map(o => `
+    <tr>
+      <td><b>${o.ref}</b></td>
+      <td>${o.customer}</td>
+      <td style="color:var(--gold);font-weight:700">${fmt(o.total)}</td>
+      <td><span class="status s-${o.status}">${o.status}</span></td>
+    </tr>`).join('');
+
+  // Top products
+  document.getElementById('top-prods-list').innerHTML = PRODUCTS.slice(0,5).map(p => `
+    <div class="top-item">
+      <div class="top-emoji">${p.emoji}</div>
+      <div>
+        <div class="top-name">${p.name}</div>
+        <div class="top-cat">${p.cat}</div>
+      </div>
+      <div class="top-price">${fmt(p.price)}</div>
+    </div>`).join('');
+
+  // All orders
+  document.getElementById('all-orders-body').innerHTML = ORDERS.map((o,i) => `
+    <tr>
+      <td><b>${o.ref}</b></td>
+      <td>${o.customer}</td>
+      <td>${o.phone}</td>
+      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${o.items}</td>
+      <td style="color:var(--gold);font-weight:700;white-space:nowrap">${fmt(o.total)}</td>
+      <td>${o.pay}</td>
+      <td>${o.date}</td>
+      <td><span class="status s-${o.status}">${o.status}</span></td>
+      <td>
+        <select class="status-select" onchange="updateOrderStatus(${i}, this.value)">
+          <option value="">Update…</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="in-transit">In Transit</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </td>
+    </tr>`).join('');
+
+  // Products admin
+  document.getElementById('prod-admin-count').textContent = PRODUCTS.length + ' products';
+  document.getElementById('prod-admin-body').innerHTML = PRODUCTS.map(p => `
+    <tr>
+      <td><span style="font-size:20px;margin-right:8px">${p.emoji}</span>${p.name}</td>
+      <td>${p.cat}</td>
+      <td style="color:var(--gold);font-weight:700">${fmt(p.price)}</td>
+      <td><button class="tbl-btn">Edit</button></td>
+    </tr>`).join('');
+
+  // Customers
+  document.getElementById('cust-count-label').textContent = CUSTOMERS.length + ' registered customers';
+  document.getElementById('customers-body').innerHTML = CUSTOMERS.map(c => {
+    const tier = c.tier === 'VIP' ? 's-delivered' : c.tier === 'New' ? 's-pending' : 's-confirmed';
+    return `<tr>
+      <td><b>${c.name}</b></td>
+      <td>${c.phone}</td>
+      <td style="text-align:center;font-weight:600">${c.orders}</td>
+      <td style="color:var(--gold);font-weight:700">${fmt(c.total)}</td>
+      <td>${c.joined}</td>
+      <td><span class="status ${tier}">${c.tier}</span></td>
+      <td>
+        <a href="https://wa.me/250${c.phone.replace(/\s/g,'').replace(/^0/,'')}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:#25D366;color:white;border:none;padding:5px 10px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none">
+          <i class="fab fa-whatsapp"></i> Chat
+        </a>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function updateOrderStatus(i, val) {
+  if(!val) return;
+  ORDERS[i].status = val;
+  toast(ORDERS[i].ref + ' updated to "' + val + '"');
+  renderAdmin();
+}
+
+function addProduct() {
+  const name = document.getElementById('new-name').value.trim();
+  const price = parseInt(document.getElementById('new-price').value);
+  if(!name || !price) { toast('Name and price are required.'); return; }
+  const newProd = {
+    id: PRODUCTS.length + 1,
+    emoji: '🪑',
+    name,
+    cat: document.getElementById('new-cat').value,
+    price,
+    oldPrice: parseInt(document.getElementById('new-old').value) || null,
+    badge: document.getElementById('new-badge').value || null,
+    desc: document.getElementById('new-desc').value || 'Bespoke EL-CREDO piece. Contact us for full specifications.',
+    specs: {Material:'Custom',Delivery:'14–21 days',Warranty:'1 year'}
+  };
+  PRODUCTS.push(newProd);
+  ['new-name','new-price','new-old','new-desc'].forEach(id => document.getElementById(id).value = '');
+  toast('Product "' + name + '" added!');
+  renderAdmin();
+}
+
+/* ── INIT ── */
+renderProducts();
+</script>
+</body>
+</html>
